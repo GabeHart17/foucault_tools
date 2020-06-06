@@ -17,7 +17,7 @@ class FoucaultTest:
                          i, j in zip(self.zones_inner, zones)]
         self.disk_theoretical = f_ratio * 1.22 * wavelength
         self.transverse_coefficients = [i / (4 * self.focal_length) for i in self.zone_means]
-        self.longitudinal_theoretical = [i**2 / self.radius for i in self.zone_means]  # FIXME: should be radius of curvature?
+        self.longitudinal_theoretical = [i**2 / self.radius for i in self.zone_means]
 
     def balanced_transverse(self, data):
         longitudinal_residual = [i - j for i, j in zip(data, self.longitudinal_theoretical)]
@@ -41,7 +41,7 @@ class FoucaultTest:
 
     def surface_error(self, data):
         res = []
-        acc = 0
+        acc = 0.0
         se = self.slope_error(data)
         for i in range(len(self.zones)):
             acc += se[i] * (self.zones[i] - self.zones_inner[i])
