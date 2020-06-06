@@ -13,7 +13,7 @@ class FoucaultTest:
         self.wavelength = wavelength
         self.zones = zones
         self.zones_inner = [0.0] + zones[:-1]
-        self.zone_means = [sqrt(i**2 + j**2) if rms_zones else (i + j) / 2 for
+        self.zone_means = [sqrt((i**2 + j**2) / 2) if rms_zones else (i + j) / 2 for
                          i, j in zip(self.zones_inner, zones)]
         self.disk_theoretical = f_ratio * 1.22 * wavelength
         self.transverse_coefficients = [i / (4 * self.focal_length) for i in self.zone_means]
