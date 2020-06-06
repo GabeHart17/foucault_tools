@@ -1,3 +1,6 @@
+import math
+
+
 # all linear units in meters, angles in radians
 class FoucaultTest:
     # zones is radius of each zone on couder mask, assumed to be ordered inner to outer
@@ -44,3 +47,11 @@ class FoucaultTest:
             acc += se[i] * (self.zones[i] - self.zones_inner[i])
             res.append(acc)
         return res
+
+
+# generate zone radii for couder mask such that all zones are of equal area
+def auto_zones(apperture, quantity):
+    r = apperture / 2
+    a = math.pi * (r ** 2)
+    az = a / quantity
+    return [math.sqrt((az * i) / math.pi) for i in range(1, quantity + 1)]
